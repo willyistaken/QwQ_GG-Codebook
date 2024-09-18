@@ -45,6 +45,8 @@
     - [ ] 插值
     - [ ] 卷積
     - [ ] fast mod int
+    - [ ] big int
+    - [ ] fraction
     - [ ] 矩陣快速冪
     - [ ] 四邊形優化 (二分隊列) / Aliens / SMAWK
     - [ ] 插頭 dp (learn)
