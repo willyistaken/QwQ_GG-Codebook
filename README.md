@@ -1,5 +1,4 @@
 # QwQ_GG-Codebook
-ㄔ
 
 # Todo:
 1. 幾何
