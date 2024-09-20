@@ -1,15 +1,17 @@
 # QwQ_GG-Codebook
-
+ㄔ
 
 # Todo:
 1. 幾何
     - [ ] 旋轉掃描線
     - [ ] 平面圖 (learn)
     - [ ] simplex (learn?)
+    
 2. 圖論
     - [ ] Dominator Tree
     - [ ] Block-Cut Tree
     - [ ] flow (learn push relabel) / MCMF (建模思路、方法)
+    - [ ] Goromy-Hu Tree
     - [ ] 上下界流
     - [ ] 全域最小割
     - [ ] matching () (general graph blossom/ Gauss)
@@ -30,6 +32,7 @@
     - [ ] link-cut tree/ ETT
     - [ ] 動態開點李超
     - [ ] 修改莫隊
+    - [ ] 吉如一
     - [ ] cdq 分治
     - [ ] 可持久話並查集
     - [ ] Treap/splay
@@ -57,6 +60,7 @@
     - [ ] 對拍.sh
     - [ ] python
     - [ ] pragma
+    - [ ] Capslock to Esc
 7. 隨機
     - [ ] 最小包覆圓
     - [ ] 最近點對
