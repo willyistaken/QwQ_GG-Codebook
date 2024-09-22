@@ -10,12 +10,9 @@ struct mint {// P not prime break /=
         v = (v < o.v) ? v + P -o.v : v-o.v;
         return *this;
     }
-    inline ll modmul(const ll &a,const ll &b) {
-        ll ret = a * b - P * ll(1.L / P * a * b);
-        return ret + P * (ret < 0) - P * (ret >= (ll)P);
-    }
     mint &operator*=(mint const&o) {
-        v = modmul(ll(v),ll(o.v));
+        ll ret = ll(v)*ll(o.v) - P*ll(1.L/P*ll(v)*ll(o.v));
+		v = ret + P * (ret < 0) - P * (ret >= (ll)P);
         return *this;
     }
     friend mint operator+(mint const&a, mint const&b) {
