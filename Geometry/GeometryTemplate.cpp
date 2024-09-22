@@ -1,67 +1,10 @@
-#include <cstdio>
-#include <stdio.h>
-#include <iostream>
-#include <math.h>
-#include <vector>
-#include <queue>
-#include <stack>
-#include <deque>
-#include <algorithm>
-#include <utility>
-#include <set>
-#include <map>
-#include <stdlib.h>
-#include <cstring>
-#include <string.h>
-#include <string>
-#include <sstream>
-#include <assert.h>
-#include <climits>
-#include <sstream>
-#include <numeric>
-#include <time.h>
-#include <limits.h>
-#include <list>
-#include <bitset>
-#include <unordered_map>
-#include <unordered_set>
-#include <random>
-#include <iomanip>
-// #pragma GCC optimize("Ofast,no-stack-protector")
-// #pragma GCC optimize("O3,unroll-loops")
-// #pragma GCC target("avx2,bmi,bmi2,lzcnt,popcnt")
-#define lowbit(x) ((x) & -(x))
-#define ml(a, b) ((1ll * (a) * (b)) % M)
-#define tml(a, b) (a) = ((1ll * (a) * (b)) % M)
-#define ad(a, b) ((0ll + (a) + (b)) % M)
-#define tad(a, b) (a) = ((0ll + (a) + (b)) % M)
-#define tmin(a, b) (a) = min((a), (b))
-#define tmax(a, b) (a) = max((a), (b))
-#define iter(a) (a).begin(), (a).end()
-#define riter(a) (a).rbegin(), (a).rend()
-#define init(a, b) memset((a), (b), sizeof(a))
-#define cpy(a, b) memcpy((a), (b), sizeof(a))
-#define uni(a) a.resize(unique(iter(a)) - a.begin())
-#define ls(i) ((i) << 1)
-#define rs(i) ((i) << 1 | 1)
-#define INF 0x3f3f3f3f
+#include <bits/stdc++.h>
 #define eps 1e-9
-#define F first
-#define S second
-#define AC ios::sync_with_stdio(0), cin.tie(0), cout.tie(0)
 using namespace std;
 typedef long long llt;
 typedef pair<int, int> pii;
 typedef pair<double, double> pdd;
 typedef pair<llt, llt> pll;
-// const int M = 998244353;
-
-// random_device rs;
-// mt19937 rg(rs());
-// default_random_engine rg(rs());
-// uniform_int_distribution<int> rd(INT_MIN, INT_MAX);
-// uniform_real_distribution<double> rd(0, M_PI);
-
 struct P
 {
     double x, y;
@@ -82,12 +25,10 @@ struct P
     double operator^(const P &b) const { return x * b.y - y * b.x; }
     double lth() const { return sqrt(x * x + y * y); }
 };
-
 ostream &operator<<(ostream &os, const P &a)
 {
     return os << a.x << ' ' << a.y << '|';
 }
-
 int ori(const P &a, const P &b, const P &c)
 {
     double k = (b - a) ^ (c - a);
@@ -95,16 +36,13 @@ int ori(const P &a, const P &b, const P &c)
         return 0;
     return k > 0 ? 1 : -1;
 }
-
 inline bool ud(const P &a)
 {
     if (-eps < a.y && a.y < eps)
         return a.x > eps;
     return a.y > eps;
 }
-
 P bs(0, 0);
-
 bool cmp(const P &a, const P &b)
 {
     bool ba = ud(a), bb = ud(b);
@@ -112,12 +50,10 @@ bool cmp(const P &a, const P &b)
         return ba;
     return ori(bs, a, b) > 0;
 };
-
 bool within(const P &a, const P &b, const P &c)
 {
     return (b - a) * (c - a) < eps;
 }
-
 bool its(const P &a, const P &b, const P &c, const P &d)
 {
     int abc = ori(a, b, c);
@@ -136,7 +72,6 @@ P itp(const P &a, const P &b, const P &c, const P &d)
     double abd = (b - a) ^ (d - a);
     return (d * abc - c * abd) / (abc - abd);
 }
-
 void fdhl(vector<P> &ar, vector<P> &hl, int lnar)
 {
     int lnhl;
@@ -160,7 +95,6 @@ void fdhl(vector<P> &ar, vector<P> &hl, int lnar)
     if (hl.size() > 1 && hl.front() == hl.back())
         hl.pop_back();
 }
-
 bool in(const P &a, vector<P> &hl)
 {
     int ln = hl.size();
@@ -178,8 +112,4 @@ bool in(const P &a, vector<P> &hl)
             r = m;
     }
     return ori(hl[0], hl[l], a) >= 0 && ori(hl[l], hl[r], a) >= 0 && ori(hl[r], hl[0], a) >= 0;
-}
-
-signed main()
-{
 }
