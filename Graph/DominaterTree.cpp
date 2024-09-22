@@ -36,7 +36,7 @@ struct DOT
             int u = id[i];
             for (int v : rG[u])
                 if ((v = dfn[v]))
-                    f(v, i), tmin(sdm[i], sdm[bst[v]]);
+                    f(v, i), sdm[i] = (sdm[i]>sdm[bst[v]])?(sdm[bst[v]]):(sdm[i]);
             eg[sdm[i]].pb(i), u = fa[i];
             for (int v : eg[u])
                 f(v, u), idm[v] = (sdm[bst[v]] == u ? u : bst[v]);
@@ -49,4 +49,4 @@ struct DOT
             eg[id[idm[i]]].pb(id[i]);
         }
     }
-} tr;
+};
