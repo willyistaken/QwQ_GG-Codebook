@@ -1,6 +1,6 @@
+template<unsigned P>
 struct mint {// P not prime break /=
     unsigned v;
-    static const unsigned P = 3;// change this
     mint(ll v=0) : v(v % P) {}
     mint &operator+=(mint const&o) {
         v = (v += o.v) >= P ? v - P : v;
