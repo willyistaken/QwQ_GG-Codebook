@@ -56,8 +56,7 @@
     - [ ] 數論分塊
     - [ ] extgcd
 6. 比賽語法
-    - [ ] 對拍.sh
-    - [ ] python
+    - [x] 對拍.sh
     - [ ] pragma
     - [ ] Capslock to Esc
 7. 隨機
