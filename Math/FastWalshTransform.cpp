@@ -1,3 +1,4 @@
+// Modint needed
 struct Fast_Walsh_Transform {
     string op; // and, or, xor
     void fwt(vector<mint> &v, bool ifwt) {
@@ -5,7 +6,7 @@ struct Fast_Walsh_Transform {
         mint iv2 = mint(1) / 2;
         for (int i = 0; i < n; ++i)
             for (int j = 0; j < 1 << n; ++j)
-                if (op == "and" && (!j >> i & 1) || op == "or" && (j >> i & 1)) {
+                if (op == "and" && (~j >> i & 1) || op == "or" && (j >> i & 1)) {
                     if (!ifwt)
                         v[j] += v[j ^ (1 << i)];
                     else
