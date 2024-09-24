@@ -1,5 +1,5 @@
 struct SA {
-    static const int N = 5e5 + 5;
+    static const int N = 5e5 + 5; // change
     int sa[N], rk[N], cnt[N], lcp[N], tmp[N], n;
     void blt(const string &s) {
         n = s.length();

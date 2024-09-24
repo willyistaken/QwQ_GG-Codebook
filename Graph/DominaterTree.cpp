@@ -1,5 +1,5 @@
 struct DOT {
-    static const int N = 2e5 + 5;
+    static const int N = 2e5 + 5; // change
     int dfn[N], id[N], dfc, fa[N], idm[N], sdm[N], bst[N];
     vector<int> G[N], rG[N];
     void ini(int n) {
@@ -30,7 +30,7 @@ struct DOT {
             int u = id[i];
             for (int v : rG[u])
                 if ((v = dfn[v]))
-                    f(v, i), sdm[i] = (sdm[i] > sdm[bst[v]]) ? (sdm[bst[v]]) : (sdm[i]);
+                    f(v, i), tmin(sdm[i], sdm[bst[v]]);
             eg[sdm[i]].pb(i), u = fa[i];
             for (int v : eg[u])
                 f(v, u), idm[v] = (sdm[bst[v]] == u ? u : bst[v]);
