@@ -13,7 +13,6 @@ void db() { cerr << endl; }
 template <class T, class... U>
 void db(T a, U... b) { cerr << a << " ", db(b...); }
 
-signed main()
-{
+signed main() {
     cin.tie(0)->sync_with_stdio(0);
 }
