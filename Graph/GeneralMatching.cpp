@@ -84,7 +84,7 @@ struct Matching {
         }
     }
     void add_edge(int a,int b) {
-        sidearr.push_back({min(a,b),max(a,b)});
+        sidearr.pb(min(a,b),max(a,b));
     }
     void build_matching() {
         auto rng = mt19937(chrono::steady_clock::now().time_since_epoch().count());
