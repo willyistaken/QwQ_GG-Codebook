@@ -2,12 +2,12 @@ struct DOT {
     static const int N = 2e5 + 5; // change
     int dfn[N], id[N], dfc, fa[N], idm[N], sdm[N], bst[N];
     vector<int> G[N], rG[N];
-    void ini(int n) {
+    void ini(int n) { // remember to initialize
         for (int i = 1; i <= n; i++)
             G[i].clear(), rG[i].clear();
         fill(dfn, dfn + n + 1, 0);
     }
-    inline void adeg(int u, int v) { G[u].pb(v), rG[v].pb(u); }
+    inline void addedge(int u, int v) { G[u].pb(v), rG[v].pb(u); }
     int f(int x, int lm) {
         if (x <= lm)
             return x;
