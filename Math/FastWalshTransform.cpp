@@ -21,7 +21,7 @@ struct FWT {
     }
     vector<mint> v1, v2; // size(v1) = size(v2) = 2^k
     Fast_Walsh_Transform(const vector<mint> &_v1, const vector<mint> &_v2, const string &_op) : v1(_v1), v2(_v2), op(_op) {}
-    vector<mint> solve() {
+    vector<mint> solve() { // ans_k = \sum_{i op j = k} a_i * b_j
         fwt(v1, 0), fwt(v2, 0);
         for (int i = 0; i < size(v1); ++i)
             v1[i] *= v2[i];
