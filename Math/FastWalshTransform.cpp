@@ -1,5 +1,4 @@
-// Modint needed
-struct FWT {
+struct FWT { // Modint needed
     string op; // and, or, xor
     void fwt(vector<mint> &v, bool ifwt) {
         int n = __lg(size(v));
