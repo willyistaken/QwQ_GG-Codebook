@@ -8,8 +8,8 @@
     - [ ] Minkowski sum
     
 2. 圖論
-    - [ ] Dominator Tree
-    - [ ] Block-Cut Tree
+    - [x] Dominator Tree
+    - [x] Block-Cut Tree
     - [ ] flow (learn push relabel) / MCMF (建模思路、方法)
     - [ ] Goromy-Hu Tree
     - [ ] 上下界流
@@ -24,7 +24,7 @@
 3. 字串
     - [ ] suffix array
     - [ ] AC automaton
-    - [ ] KMP/Z/manacher
+    - [x] KMP/Z/manacher
     - [ ] hash
     - [ ] eertree
     - [ ] SAM (learn)
@@ -32,8 +32,8 @@
     - [ ] link-cut tree/ ETT
     - [ ] 動態開點李超
     - [ ] 修改莫隊
-    - [ ] 吉如一
-    - [ ] cdq 分治
+    - [x] 吉如一
+    - [x] cdq 分治
     - [ ] 可持久話並查集
     - [ ] Treap/splay
     - [ ] 可持久 Treap
