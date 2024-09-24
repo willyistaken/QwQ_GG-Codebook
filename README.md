@@ -5,6 +5,7 @@
     - [ ] 旋轉掃描線
     - [ ] 平面圖 (learn)
     - [ ] simplex (learn?)
+    - [ ] Minkowski sum
     
 2. 圖論
     - [ ] Dominator Tree
