@@ -4,6 +4,8 @@ using namespace std;
 #define iter(x) x.begin(),x.end()
 #define size(x) (int)x.size()
 #define INF 0x3f3f3f3f
+#define tmin(a,b) (a)=min((a),(b))
+#define tmax(a,b) (a)=max((a),(b))
 typedef long long ll;
 typedef pair<int, int> pii;
 
