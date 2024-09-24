@@ -12,16 +12,28 @@ struct frac {
     frac operator+(const frac &b) const {
         return frac(n * b.d + b.n * d, d * b.d);
     }
+    void operator+=(const frac &b) {
+        *this = frac(n * b.d + b.n * d, d * b.d);
+    }
     frac operator-(const frac &b) const {
         return frac(n * b.d - b.n * d, d * b.d);
+    }
+    void operator-=(const frac &b) {
+        *this = frac(n * b.d - b.n * d, d * b.d);
     }
     frac operator*(const frac &b) const {
         return frac(n * b.n, d * b.d);
     }
+    void operator*=(const frac &b) {
+        *this = frac(n * b.n, d * b.d);
+    }
     frac operator/(const frac &b) const {
         return frac(n * b.d, d * b.n);
     }
-    friend auto operator<<(ostream &os, frac const &f) -> ostream & {
+    void operator/=(const frac &b) {
+        *this = frac(n * b.d, d * b.n);
+    }
+    friend ostream &operator<<(ostream &os, frac const &f) {
         if (f.d == 1)
             return os << f.n;
         return os << f.n << '/' << f.d;
