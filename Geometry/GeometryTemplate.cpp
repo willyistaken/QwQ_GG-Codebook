@@ -1,10 +1,4 @@
-#include <bits/stdc++.h>
 #define eps 1e-9
-using namespace std;
-typedef long long llt;
-typedef pair<int, int> pii;
-typedef pair<double, double> pdd;
-typedef pair<llt, llt> pll;
 struct P
 {
     double x, y;
@@ -42,9 +36,9 @@ inline bool ud(const P &a)
         return a.x > eps;
     return a.y > eps;
 }
-P bs(0, 0);
 bool cmp(const P &a, const P &b)
 {
+	P bs(0, 0);
     bool ba = ud(a), bb = ud(b);
     if (ba ^ bb)
         return ba;
