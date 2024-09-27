@@ -1,4 +1,4 @@
-struct FWT { // Modint needed
+struct Fast_Walsh_Transform { // Modint needed
     string op; // and, or, xor
     void fwt(vector<mint> &v, bool ifwt) {
         int n = __lg(size(v));
