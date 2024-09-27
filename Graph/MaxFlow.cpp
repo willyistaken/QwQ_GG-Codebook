@@ -5,10 +5,10 @@ struct FLOW {
     struct E {
         int to, cap, nxt;
     } eg[M];
-    inline void addedge(int u, int v, int w) {
+    inline void addedge(int u, int v, int w,int d=0) {
         eg[ct] = {v, w, hd[u]};
         hd[u] = ct++;
-        eg[ct] = {u, 0, hd[v]};
+        eg[ct] = {u, d, hd[v]};
         hd[v] = ct++;
     }
     bool bfs() {
