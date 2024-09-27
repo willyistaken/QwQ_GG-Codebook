@@ -4,6 +4,7 @@ struct P {
     P() { x = y = 0; }
     P(double x, double y) : x(x), y(y) {}
     friend bool operator<(const P &a, const P &b) { return a.x == b.x ? a.y < b.y : a.x < b.x; }
+    friend bool operator<=(const P &a, const P &b) { return a.x == b.x ? a.y <= b.y : a.x <= b.x; }
     friend bool operator==(const P &a, const P &b) { return a.x == b.x && a.y == b.y; }
     friend bool operator!=(const P &a, const P &b) { return a.x != b.x || a.y != b.y; }
     P operator+(const P &b) const { return P(x + b.x, y + b.y); }
@@ -17,28 +18,29 @@ struct P {
     double operator*(const P &b) const { return x * b.x + y * b.y; }
     double operator^(const P &b) const { return x * b.y - y * b.x; }
     double lth() const { return sqrt(x * x + y * y); }
+    double lth2() const { return x * x + y * y; }
+    friend ostream &operator<<(ostream &os, const P &a) {
+        return os << '(' << a.x << ' ' << a.y << ')';
+    }
 };
-ostream &operator<<(ostream &os, const P &a) {
-    return os << a.x << ' ' << a.y << '|';
-}
 int ori(const P &a, const P &b, const P &c) {
     double k = (b - a) ^ (c - a);
-    if (-eps < k && k < eps)
+    if (fabs(k) < eps)
         return 0;
     return k > 0 ? 1 : -1;
 }
-inline bool ud(const P &a) {
+inline bool updown(const P &a) {
     if (-eps < a.y && a.y < eps)
         return a.x > eps;
     return a.y > eps;
 }
 bool cmp(const P &a, const P &b) {
     P bs(0, 0);
-    bool ba = ud(a), bb = ud(b);
+    bool ba = updown(a), bb = updown(b);
     if (ba ^ bb)
         return ba;
     return ori(bs, a, b) > 0;
-};
+}
 bool within(const P &a, const P &b, const P &c) {
     return (b - a) * (c - a) < eps;
 }
@@ -52,7 +54,6 @@ bool its(const P &a, const P &b, const P &c, const P &d) {
                within(c, a, b) || within(d, a, b);
     return abc * abd <= 0 && cda * cdb <= 0;
 }
-
 P itp(const P &a, const P &b, const P &c, const P &d) {
     double abc = (b - a) ^ (c - a);
     double abd = (b - a) ^ (d - a);
