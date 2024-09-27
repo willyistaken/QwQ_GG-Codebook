@@ -38,4 +38,9 @@ struct frac {
             return os << f.n;
         return os << f.n << '/' << f.d;
     }
+    friend istream &operator>>(istream &is, frac &f) {
+        istream &tp = is >> f.n >> f.d;
+        f = frac(f.n, f.d);
+        return tp;
+    }
 };

@@ -19,8 +19,8 @@ struct P {
     double operator^(const P &b) const { return x * b.y - y * b.x; }
     double lth() const { return sqrt(x * x + y * y); }
     double lth2() const { return x * x + y * y; }
-    inline void read() { cin >> x >> y; }
     inline void print() { cout << '(' << x << ' ' << y << ')'; }
+    friend istream &operator>>(istream &is, P &a) { return is >> a.x >> a.y; }
     friend ostream &operator<<(ostream &os, const P &a) { return os << a.x << ' ' << a.y; }
 };
 int ori(const P &a, const P &b, const P &c) {

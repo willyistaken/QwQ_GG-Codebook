@@ -41,4 +41,7 @@ struct mint { // P not prime break /=
     friend ostream &operator<<(ostream &os, mint const &m) {
         return os << m.v;
     }
+    friend istream &operator>>(istream &is, mint &m) {
+        return is >> m.v;
+    }
 };

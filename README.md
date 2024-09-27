@@ -47,7 +47,7 @@
     - [ ] 多項式
     - [ ] 插值
     - [ ] 卷積
-    - [x] fast mod int
+    - [ ] fast mod int
     - [ ] big int
     - [ ] fraction
     - [ ] 矩陣快速冪
