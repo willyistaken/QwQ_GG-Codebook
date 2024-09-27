@@ -1,6 +1,6 @@
 struct FLOW {
     static const int N = 1e3 + 5, M = N * 10, s = 0, t = 1; // change
-    int dp[N], cr[N], hd[N], ct = 2;
+    int dp[N], cr[N], hd[N], ct = 2, flow;
     struct E {
         int to, cap, nxt;
     } eg[M];
@@ -43,9 +43,9 @@ struct FLOW {
         return sm;
     }
     int getflow() {
-        int ans = 0;
+        flow = 0;
         while (bfs())
-            memcpy(cr + 1, hd + 1, ct << 2), ans += dfs(s, INF);
-        return ans;
+            memcpy(cr + 1, hd + 1, ct << 2), flow += dfs(s, INF);
+        return flow;
     }
 };
