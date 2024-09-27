@@ -19,9 +19,9 @@ struct P {
     double operator^(const P &b) const { return x * b.y - y * b.x; }
     double lth() const { return sqrt(x * x + y * y); }
     double lth2() const { return x * x + y * y; }
-    friend ostream &operator<<(ostream &os, const P &a) {
-        return os << '(' << a.x << ' ' << a.y << ')';
-    }
+    inline void print() { cout << '(' << x << ' ' << y << ')'; }
+    friend istream &operator>>(istream &is, P &a) { return is >> a.x >> a.y; }
+    friend ostream &operator<<(ostream &os, const P &a) { return os << a.x << ' ' << a.y; }
 };
 int ori(const P &a, const P &b, const P &c) {
     double k = (b - a) ^ (c - a);
@@ -29,22 +29,10 @@ int ori(const P &a, const P &b, const P &c) {
         return 0;
     return k > 0 ? 1 : -1;
 }
-inline bool updown(const P &a) {
-    if (-eps < a.y && a.y < eps)
-        return a.x > eps;
-    return a.y > eps;
-}
-bool cmp(const P &a, const P &b) {
-    P bs(0, 0);
-    bool ba = updown(a), bb = updown(b);
-    if (ba ^ bb)
-        return ba;
-    return ori(bs, a, b) > 0;
-}
-bool within(const P &a, const P &b, const P &c) {
+inline bool within(const P &a, const P &b, const P &c) {
     return (b - a) * (c - a) < eps;
 }
-bool its(const P &a, const P &b, const P &c, const P &d) {
+bool intersects(const P &a, const P &b, const P &c, const P &d) {
     int abc = ori(a, b, c);
     int abd = ori(a, b, d);
     int cda = ori(c, d, a);
@@ -54,21 +42,29 @@ bool its(const P &a, const P &b, const P &c, const P &d) {
                within(c, a, b) || within(d, a, b);
     return abc * abd <= 0 && cda * cdb <= 0;
 }
-P itp(const P &a, const P &b, const P &c, const P &d) {
+P intersection(const P &a, const P &b, const P &c, const P &d) {
     double abc = (b - a) ^ (c - a);
     double abd = (b - a) ^ (d - a);
     return (d * abc - c * abd) / (abc - abd);
 }
-void fdhl(vector<P> &ar, vector<P> &hl, int lnar) {
-    int lnhl;
+P BASE(0, 0);
+inline bool updown(const P &a) {
+    if (fabs(a.y) < eps)
+        return a.x > eps;
+    return a.y > eps;
+}
+bool cmp(const P &a, const P &b) {
+    bool ba = updown(a - BASE), bb = updown(b - BASE);
+    if (ba ^ bb)
+        return ba;
+    return ori(BASE, a, b) > 0;
+}
+void fdhl(vector<P> &ar, vector<P> &hl) {
     for (int i = 0; i < 2; i++) {
         int prln = hl.size();
-        for (int j = 0; j < lnar; j++) {
-            lnhl = hl.size();
-            while (lnhl - prln > 1 && ori(hl[lnhl - 1], hl[lnhl - 2], ar[j]) >= 0) {
-                lnhl--;
+        for (int j = 0; j < size(ar); j++) {
+            while (size(hl) - prln > 1 && ori(hl[size(hl) - 1], hl[size(hl) - 2], ar[j]) >= 0)
                 hl.pop_back();
-            }
             hl.push_back(ar[j]);
         }
         if (hl.size() > 1)
@@ -85,7 +81,7 @@ bool in(const P &a, vector<P> &hl) {
     if (ln == 2)
         return within(a, hl[0], hl[1]);
     int l = 1, r = ln - 1, m;
-    while (r - l > 1) {
+    while (l < r - 1) {
         m = (l + r) >> 1;
         if (ori(hl[0], a, hl[m]) < 0)
             l = m;
