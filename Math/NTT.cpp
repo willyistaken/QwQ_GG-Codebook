@@ -1,15 +1,16 @@
 struct NTT {
-    static const int K = 15, N = 1 << K, M = 998244353; // change
-    static mint<M> pl[N];
-    static int rv[N];
-    void ntt(vector<mint<M>> &ar) {
+    static const int K = 21, N = 1 << K, M = 998244353; // change
+    typedef mint<M> mi;
+    mi pl[N];
+    int rv[N];
+    void ntt(vector<mi> &ar) {
         int n = size(ar), k = log2(n);
         if (n <= 1)
             return;
         for (int i = 1; i < n; i++)
             if (i < rv[i] >> (K - k))
                 swap(ar[i], ar[rv[i] >> (K - k)]);
-        mint<M> a, b;
+        mi a, b;
         for (int l = 1, p = 1 << (K - 1); l < n; l <<= 1, p >>= 1) {
             for (int i = 0; i < n; i += l << 1) {
                 for (int j = 0; j < l; j++) {
@@ -20,8 +21,9 @@ struct NTT {
             }
         }
     }
-    void pmul(vector<mint<M>> &a, vector<mint<M>> &b, vector<mint<M>> &c) {
+    void pmul(vector<mi> &a, vector<mi> &b, vector<mi> &c) {
         int n = size(a) + size(b) - 1;
+        int pn = n;
         while (n & (n - 1))
             n += lowbit(n);
         a.resize(n), b.resize(n);
@@ -29,10 +31,10 @@ struct NTT {
         c.resize(n);
         for (int i = 0; i < n; i++)
             c[-i & (n - 1)] = a[i] * b[i] / n;
-        ntt(c);
+        ntt(c), c.resize(pn);
     }
     NTT() {
-        pl[0] = 1, pl[1] = mint<M>(3).pow((M - 1) / N);
+        pl[0] = 1, pl[1] = mi(3).pow((M - 1) / N);
         for (int i = 2; i < N; i++)
             pl[i] = pl[i - 1] * pl[1];
         for (int i = 1, hb = -1; i < N; i++) {

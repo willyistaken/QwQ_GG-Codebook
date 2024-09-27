@@ -1,9 +1,9 @@
 typedef complex<double> cd;
 struct FFT {
     // #define M_PI 3.14159265358979323846264338327950288
-    static const int K = 15, N = 1 << K; // change
-    static cd pl[N];
-    static int rv[N];
+    static const int K = 21, N = 1 << K; // change
+    cd pl[N];
+    int rv[N];
     void fft(vector<cd> &ar) {
         int n = size(ar), k = log2(n);
         if (n <= 1)
@@ -24,6 +24,7 @@ struct FFT {
     }
     void pmul(vector<cd> &a, vector<cd> &b, vector<cd> &c) {
         int n = size(a) + size(b) - 1;
+        int pn = n;
         while (n & (n - 1))
             n += lowbit(n);
         a.resize(n), b.resize(n);
@@ -31,7 +32,7 @@ struct FFT {
         c.resize(n);
         for (int i = 0; i < n; i++)
             c[-i & (n - 1)] = a[i] * b[i] / (double)n;
-        fft(c);
+        fft(c), c.resize(pn);
     }
     FFT() {
         for (int i = 0; i < N; i++)
