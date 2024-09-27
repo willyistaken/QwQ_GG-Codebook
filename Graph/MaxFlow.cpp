@@ -1,17 +1,18 @@
 struct FLOW {
-    static const int N = 1e3 + 5, M = N * 10, s = 0, t = 1; // change
-    int dp[N], cr[N], hd[N], ct = 2, flow;
+    static const int N = 1e3 + 5, M = N * 10; // change
+    int dp[N], cr[N], hd[N], ct = 2, s = 0, t = 1, n, flow;
+    inline void ini(int _n) { n = _n; }
     struct E {
         int to, cap, nxt;
     } eg[M];
-    inline void adeg(int u, int v, int w) {
+    inline void addedge(int u, int v, int w) {
         eg[ct] = {v, w, hd[u]};
         hd[u] = ct++;
         eg[ct] = {u, 0, hd[v]};
         hd[v] = ct++;
     }
     bool bfs() {
-        memset(dp + 1, INF, ct << 2);
+        memset(dp, INF, (n + 1) << 2);
         queue<int> q;
         q.push(s), dp[s] = 0;
         while (!q.empty()) {
@@ -26,7 +27,6 @@ struct FLOW {
         }
         return dp[t] != INF;
     }
-
     int dfs(int u, int fl) {
         if (u == t)
             return fl;
@@ -45,7 +45,7 @@ struct FLOW {
     int getflow() {
         flow = 0;
         while (bfs())
-            memcpy(cr + 1, hd + 1, ct << 2), flow += dfs(s, INF);
+            memcpy(cr, hd, (n + 1) << 2), flow += dfs(s, INF);
         return flow;
     }
 };

@@ -1,21 +1,21 @@
 struct MCMF {
-    static const int N = 1005, M = N * 10;
+    static const int N = 5005, M = N * 20;
     struct E {
         int to, cap, co, nxt;
     } eg[M];
-    int dp[N], hd[N], cr[N], ct = 2, s, t, flow, cost;
+    int dp[N], hd[N], cr[N], ct = 2, s = 0, t = 1, n, flow, cost;
     bool vd[N];
-
-    inline void adeg(int u, int v, int w, int c) {
+    inline void ini(int _n) { n = _n; }
+    inline void addedge(int u, int v, int w, int c) {
         eg[ct] = {v, w, c, hd[u]};
         hd[u] = ct++;
         eg[ct] = {u, 0, -c, hd[v]};
         hd[v] = ct++;
     }
-
     bool spfa() {
         queue<int> q;
-        init(dp, INF), q.push(s), vd[s] = 1, dp[s] = 0;
+        memset(dp, INF, (n + 1) << 2);
+        q.push(s), vd[s] = 1, dp[s] = 0;
         while (!q.empty()) {
             int u = q.front();
             q.pop(), vd[u] = 0;
@@ -30,7 +30,6 @@ struct MCMF {
         }
         return dp[t] != INF;
     }
-
     int dfs(int u, int fl) {
         if (u == t)
             return fl;
@@ -48,8 +47,8 @@ struct MCMF {
     }
     pii getflow() {
         flow = cost = 0;
-        while (bfs())
-            memcpy(cr + 1, hd + 1, ct << 2), flow += dfs(s, INF);
+        while (spfa())
+            memcpy(cr, hd, (n + 1) << 2), flow += dfs(s, INF);
         return pii(flow, cost);
     }
 };
