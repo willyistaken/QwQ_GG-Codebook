@@ -1,6 +1,6 @@
 struct ACauto {
     const static int N = 2e5 + 5; // change
-    int tr[26][N], fail[N], ctn = 0, cnt[N], endat[N], n;
+    int tr[26][N], fail[N], ctn = 1, cnt[N], endat[N], n;
     vector<int> top; // fail tree topological order
     inline void clr(int p) {
         fail[p] = cnt[p] = 0;
