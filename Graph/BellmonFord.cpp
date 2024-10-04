@@ -1,4 +1,4 @@
-struct bellmonFord {
+struct BellmonFord {
     struct E {
         int u, v;
         ll w;
@@ -8,7 +8,7 @@ struct bellmonFord {
     ll inf = LONG_LONG_MAX;
     vector<ll> d;
     vector<E> e;
-    bellmonFord(int _n) : n(_n), e(0) {}
+    BellmonFord(int _n) : n(_n), e(0) {}
     void add_edge(int u, int v, ll w) { e.pb(E{u, v, w}); }
     void go(int s) {
         d.assign(n, inf);
