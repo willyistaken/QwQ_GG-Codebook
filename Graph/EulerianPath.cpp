@@ -20,8 +20,9 @@ struct EulerianPath {
 			for (auto [j, id] : adj[i])
 				++in[j];
 		}
-		int s = -1, t = -1;
+		int s = -1, t = -1, ss = -1;
 		for (int i = 0; i < n; ++i) {
+			if (out[i] && ss == -1) ss = i;
 			if (in[i] == out[i]) continue;
 			if (in[i] + 1 == out[i]) {
 				if (s != -1) return 0;
@@ -35,7 +36,7 @@ struct EulerianPath {
 			}
 			return 0;
 		}
-		if (s == -1) s = 0;
+		if (s == -1) s = ss;
 		cur.assign(n, 0), vst.assign(m, 0), ans.clear();
 		dfs(s), reverse(iter(ans));
 		return accumulate(iter(vst), 0) == m;
