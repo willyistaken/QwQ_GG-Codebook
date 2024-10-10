@@ -60,6 +60,7 @@ bool cmp(const P &a, const P &b) {
     return ori(BASE, a, b) > 0;
 }
 void fdhl(vector<P> &ar, vector<P> &hl) {
+    sort(iter(ar));
     for (int i = 0; i < 2; i++) {
         int prln = size(hl);
         for (int j = 0; j < size(ar); j++) {
