@@ -1,5 +1,5 @@
 bool in(const P &a, vector<P> &hl) {
-    int ln = hl.size();
+    int ln = size(hl);
     if (ln == 1)
         return a == hl[0];
     if (ln == 2)
