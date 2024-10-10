@@ -1,16 +1,17 @@
 struct NTT {
-    static const int K = 21, N = 1 << K, M = 998244353; // change
+    static const int K = 19, N = 1 << K, M = 998244353; // change
     typedef mint<M> mi;
     mi pl[N];
     int rv[N];
     void ntt(vector<mi> &ar) {
-        int n = size(ar), k = log2(n);
+        static int n, k;
+        n = size(ar), k = log2(n);
         if (n <= 1)
             return;
         for (int i = 1; i < n; i++)
             if (i < rv[i] >> (K - k))
                 swap(ar[i], ar[rv[i] >> (K - k)]);
-        mi a, b;
+        static mi a, b;
         for (int l = 1, p = 1 << (K - 1); l < n; l <<= 1, p >>= 1) {
             for (int i = 0; i < n; i += l << 1) {
                 for (int j = 0; j < l; j++) {
@@ -22,16 +23,20 @@ struct NTT {
         }
     }
     void pmul(vector<mi> &a, vector<mi> &b, vector<mi> &c) {
-        int n = size(a) + size(b) - 1;
-        int pn = n;
+        static int n, pla, plb;
+        static mi ivn;
+        pla = size(a), plb = size(b);
+        n = pla + plb - 1;
         while (n & (n - 1))
             n += lowbit(n);
         a.resize(n), b.resize(n);
         ntt(a), ntt(b);
         c.resize(n);
+        ivn.v = 1, ivn /= n;
         for (int i = 0; i < n; i++)
-            c[-i & (n - 1)] = a[i] * b[i] / n;
-        ntt(c), c.resize(pn);
+            c[-i & (n - 1)] = a[i] * b[i] * ivn;
+        ntt(c), c.resize(pla + plb - 1);
+        a.resize(pla), b.resize(plb);
     }
     NTT() {
         pl[0] = 1, pl[1] = mi(3).pow((M - 1) / N);
