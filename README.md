@@ -21,6 +21,7 @@
     - [ ] 輕重剖
     - [ ] BCC/SCC/AP/Bridge
     - [ ] matroid intersection (learn)
+    - [ ] cycle finding (3/4/5)
 3. 字串
     - [x] suffix array
     - [x] AC automaton
