@@ -12,5 +12,5 @@ vno { c{}<Esc>P
 ino jj <Esc>
 ino jk <Esc>
 map <F5> :w<CR>:!g++ -g -fsanitize=undefined,address  -Wall -Wextra -Wshadow %:r.cpp &&echo "Compiled" && ./a.out<CR>
-map <F6> :!./a.out<CR>
-map <F7> :w<CR>:!g++ -g -fsanitize=undefined,address  -Wall -Wextra -Wshadow %:r.cpp -o %:r <CR>
+map <F6> :w<CR>:!g++ -g -fsanitize=undefined,address  -Wall -Wextra -Wshadow %:r.cpp -o %:r <CR>
+map <F7> :!./a.out<CR>
