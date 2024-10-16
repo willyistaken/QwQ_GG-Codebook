@@ -1,12 +1,11 @@
 typedef complex<double> cd;
 struct FFT {
-    // #define M_PI 3.14159265358979323846264338327950288
+#define M_PI 3.14159265358979323846264338327950288
     static const int K = 19, N = 1 << K; // change
     cd pl[N];
     int rv[N];
-    void fft(vector<cd> &ar) {
-        static int n, k;
-        n = size(ar), k = log2(n);
+    void dft(vector<cd> &ar) {
+        int n = size(ar), k = log2(n);
         if (n <= 1)
             return;
         for (int i = 1; i < n; i++)
@@ -23,18 +22,23 @@ struct FFT {
             }
         }
     }
-    void pmul(vector<cd> &a, vector<cd> &b, vector<cd> &c) {
-        static int pla, plb, n;
-        pla = size(a), plb = size(b), n = pla + plb - 1;
+    void idft(vector<cd> &ar) {
+        double n = size(ar);
+        reverse(ar.begin() + 1, ar.end());
+        for (cd &i : ar)
+            i /= n;
+        dft(ar);
+    }
+    vector<cd> pmul(vector<cd> a, vector<cd> b) {
+        int n = size(a) + size(b) - 1;
         while (n & (n - 1))
             n += lowbit(n);
         a.resize(n), b.resize(n);
-        fft(a), fft(b);
-        c.resize(n);
+        dft(a), dft(b);
         for (int i = 0; i < n; i++)
-            c[-i & (n - 1)] = a[i] * b[i] / (double)n;
-        fft(c), c.resize(pla + plb - 1);
-        a.resize(pla), b.resize(plb);
+            a[i] *= b[i];
+        idft(a), a.resize(n);
+        return a;
     }
     FFT() {
         pl[1] = polar(1.0, 0.0);

@@ -3,7 +3,7 @@ struct NTT {
     typedef mint<M> mi;
     mi pl[N];
     int rv[N];
-    void ntt(vector<mi> &ar) {
+    void dft(vector<mi> &ar) {
         static int n, k;
         n = size(ar), k = log2(n);
         if (n <= 1)
@@ -22,21 +22,25 @@ struct NTT {
             }
         }
     }
-    void pmul(vector<mi> &a, vector<mi> &b, vector<mi> &c) {
-        static int n, pla, plb;
+    void idft(vector<mi> &ar) {
         static mi ivn;
-        pla = size(a), plb = size(b);
-        n = pla + plb - 1;
+        ivn.v = 1, ivn /= size(ar);
+        reverse(ar.begin() + 1, ar.end());
+        for (mi &i : ar)
+            i *= ivn;
+        dft(ar);
+    }
+    vector<mi> pmul(vector<mi> a, vector<mi> b) {
+        static int n;
+        n = size(a) + size(b) - 1;
         while (n & (n - 1))
             n += lowbit(n);
         a.resize(n), b.resize(n);
-        ntt(a), ntt(b);
-        c.resize(n);
-        ivn.v = 1, ivn /= n;
+        dft(a), dft(b);
         for (int i = 0; i < n; i++)
-            c[-i & (n - 1)] = a[i] * b[i] * ivn;
-        ntt(c), c.resize(pla + plb - 1);
-        a.resize(pla), b.resize(plb);
+            a[i] *= b[i];
+        idft(a), a.resize(n);
+        return a;
     }
     NTT() {
         pl[1] = 1;
