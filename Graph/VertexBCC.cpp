@@ -33,7 +33,7 @@ struct VertexBCC { // !simple affect BCCofE
 		if (f == -1 && child == 0)
 			bcc.pb(vector<int>(1, u));
 	}
-	VertexBCC(int _n) : n(_n), m(0), E(0), low(n), dfn(n), bln(n), G(n) {}
+	VertexBCC(int _n) : n(_n), m(0), E(0), low(n), bln(n), G(n) {}
 	void add_edge(int u, int v) {
 		E.pb(u, v), G[u].pb(v, m), G[v].pb(u, m++);
 	}
