@@ -38,9 +38,8 @@ struct VertexBCC { // !simple affect BCCofE
 		E.pb(u, v), G[u].pb(v, m), G[v].pb(u, m++);
 	}
 	void slv() {
-		is_ap.assign(n, 0), dfn = is_ap;
-		dft = 0, st1.clear(), st2.clear();
-		BCCofE.assign(m, -1);
+		is_ap.assign(n, 0), dfn = is_ap, dft = 0;
+		st1.clear(), st2.clear(), BCCofE.assign(m, -1);
 		for (int i = 0; i < n; ++i)
 			if (!dfn[i])
 				dfs(i, -1);
