@@ -21,8 +21,7 @@ struct SCC {
 	void slv() {
 		dfn.assign(n, 0), instk = dfn, dft = nscc = 0;
 		for (int i = 0; i < n; ++i)
-			if (!dfn[i])
-				dfs(i);
+			if (!dfn[i]) dfs(i);
 	}
 }; // scc_id(i): bln[i]
 
