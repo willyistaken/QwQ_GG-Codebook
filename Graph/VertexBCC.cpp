@@ -1,9 +1,8 @@
 struct VertexBCC { // !simple affect BCCofE
 	int n, m, dft, nbcc;
 	vector<int> low, dfn, bln, is_ap, st1, st2, BCCofE;
-	vector<pii> E;
 	vector<vector<pii>> G;
-	vector<vector<int>> nG, bcc;
+	vector<vector<int>> bcc, nG;
 	void dfs(int u, int f) {
 		int child = 0;
 		low[u] = dfn[u] = ++dft, st1.pb(u);
@@ -33,9 +32,9 @@ struct VertexBCC { // !simple affect BCCofE
 		if (f == -1 && child == 0)
 			bcc.pb(vector<int>(1, u)), bln[u] = nbcc++;
 	}
-	VertexBCC(int _n) : n(_n), m(0), E(0), low(n), bln(n), G(n) {}
+	VertexBCC(int _n) : n(_n), m(0), low(n), bln(n), G(n) {}
 	void add_edge(int u, int v) {
-		E.pb(u, v), G[u].pb(v, m), G[v].pb(u, m++);
+		G[u].pb(v, m), G[v].pb(u, m++);
 	}
 	void slv() {
 		is_ap.assign(n, 0), dfn = is_ap, dft = nbcc = 0;
@@ -50,7 +49,7 @@ struct VertexBCC { // !simple affect BCCofE
 			if (is_ap[i])
 				bln[i] = tmp++;
 		nG.assign(tmp, vector<int>(0));
-		for (int i = 0; i < size(bcc); ++i)
+		for (int i = 0; i < nbcc; ++i)
 			for (int j : bcc[i])
 				if (is_ap[j])
 					nG[i].pb(bln[j]), nG[bln[j]].pb(i);
