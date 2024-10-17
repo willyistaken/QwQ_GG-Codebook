@@ -17,9 +17,7 @@ struct SCC {
 		}
 	}
 	SCC(int _n): n(_n), low(n), bln(n), G(n) {}
-	void add_edge(int u, int v) {
-		G[u].pb(v);
-	}
+	void add_edge(int u, int v) { G[u].pb(v); }
 	void slv() {
 		dfn.assign(n, 0), instk = dfn, dft = nscc = 0;
 		for (int i = 0; i < n; ++i)
