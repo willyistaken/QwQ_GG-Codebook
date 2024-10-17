@@ -1,7 +1,7 @@
 struct SCC {
 	int n, dft, nscc;
 	vector<int> low, dfn, bln, instk, stk;
-	vector<vector<int>> G, nG;
+	vector<vector<int>> G;
 	void dfs(int u) {
 		low[u] = dfn[u] = ++dft;
 		instk[u] = 1, stk.pb(u);
@@ -23,11 +23,6 @@ struct SCC {
 		for (int i = 0; i < n; ++i)
 			if (!dfn[i])
 				dfs(i);
-		nG.assign(nscc, vector<int>(0));
-		for (int i = 0; i < n; ++i)
-			for (int j : G[i])
-				if (bln[i] != bln[j])
-					nG[bln[i]].pb(bln[j]);
 	}
 }; // scc_id(i): bln[i]
 
