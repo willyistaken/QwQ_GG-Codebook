@@ -1,5 +1,5 @@
 struct VertexBCC { // !simple affect BCCofE
-	int n, m, dft;
+	int n, m, dft, nbcc;
 	vector<int> low, dfn, bln, is_ap, st1, st2, BCCofE;
 	vector<pii> E;
 	vector<vector<pii>> G;
@@ -13,10 +13,10 @@ struct VertexBCC { // !simple affect BCCofE
 				dfs(v, u), ++child;
 				tmin(low[u], low[v]);
 				if (dfn[u] <= low[v]) {
-					is_ap[u] = 1, bln[u] = bln[v] = size(bcc);
+					is_ap[u] = 1, bln[u] = bln[v] = nbcc++;
 					bcc.pb(vector<int>(1, u)), bcc.back().pb(v);
 					for (; st1.back() != v; st1.pop_back())
-						bcc.back().pb(st1.back()), bln[st1.back()] = bln[u];
+						bcc[bln[u]].pb(st1.back()), bln[st1.back()] = bln[u];
 					st1.pop_back();
 					while (st2.back() != id)
 						BCCofE[st2.back()] = bln[u], st2.pop_back();
@@ -31,21 +31,21 @@ struct VertexBCC { // !simple affect BCCofE
 		if (f == -1 && child < 2)
 			is_ap[u] = 0;
 		if (f == -1 && child == 0)
-			bcc.pb(vector<int>(1, u));
+			bcc.pb(vector<int>(1, u)), bln[u] = nbcc++;
 	}
 	VertexBCC(int _n) : n(_n), m(0), E(0), low(n), bln(n), G(n) {}
 	void add_edge(int u, int v) {
 		E.pb(u, v), G[u].pb(v, m), G[v].pb(u, m++);
 	}
 	void slv() {
-		is_ap.assign(n, 0), dfn = is_ap, dft = 0;
+		is_ap.assign(n, 0), dfn = is_ap, dft = nbcc = 0;
 		st1.clear(), st2.clear(), BCCofE.assign(m, -1);
 		for (int i = 0; i < n; ++i)
 			if (!dfn[i])
 				dfs(i, -1);
 	}
 	void block_cut_tree() {
-		int tmp = size(bcc);
+		int tmp = nbcc;
 		for (int i = 0; i < n; ++i)
 			if (is_ap[i])
 				bln[i] = tmp++;
