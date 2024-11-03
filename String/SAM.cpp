@@ -1,15 +1,15 @@
 struct SAM {
     static const int N = 1e6 + 6;
-    int tr[26][N], len[N], link[N], ctn, lst;
+    int tr[26][N], len[N], lnk[N], ctn, lst;
     inline void ini(int x) {
         for (int i = 0; i < 26; i++)
             tr[i][x] = 0;
     }
     inline void ini() {
-        ini(ctn = lst = len[0] = 0), link[0] = -1;
+        ini(ctn = lst = len[0] = 0), lnk[0] = -1;
     }
     inline void cp(int x, int y) {
-        link[x] = link[y];
+        lnk[x] = lnk[y];
         for (int i = 0; i < 26; i++)
             tr[i][x] = tr[i][y];
     }
@@ -18,19 +18,19 @@ struct SAM {
         c = cc - 'a', p = lst;
         ini(cr = ++ctn), len[cr] = len[p] + 1;
         while (~p && !tr[c][p])
-            tr[c][p] = cr, p = link[p];
+            tr[c][p] = cr, p = lnk[p];
         if (~p) {
             q = tr[c][p];
             if (len[q] == len[p] + 1)
-                link[cr] = q;
+                lnk[cr] = q;
             else {
                 cp(++ctn, q), len[ctn] = len[p] + 1;
                 while (~p && tr[c][p] == q)
-                    tr[c][p] = ctn, p = link[p];
-                link[cr] = link[q] = ctn;
+                    tr[c][p] = ctn, p = lnk[p];
+                lnk[cr] = lnk[q] = ctn;
             }
         } else
-            link[cr] = 0;
+            lnk[cr] = 0;
         lst = cr;
     }
     void blt(const string &s) {
