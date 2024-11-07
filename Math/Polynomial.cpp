@@ -1,3 +1,4 @@
+
 template<typename T>
 struct Poly:vector<T>{
 	using vector<T>::vector;
@@ -38,8 +39,8 @@ struct Poly:vector<T>{
 	Poly inv() {
 		int n = size(*this);
 		if(n==1) return {T(1)/(*this)[0]};
-		int m = 1;
-		while(m<n*2) m<<=1;
+		int m = n<<1;
+		while(m^lowbit(m)) m+=lowbit(m);
 		Poly xi = Poly(*this,(n+1)/2).inv().isz(m);
 		Poly yi(*this,m);
 		con.dft(xi);con.dft(yi);

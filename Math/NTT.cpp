@@ -1,6 +1,7 @@
+const int M = 998244353;
+typedef mint<M> mi;
 struct NTT {
-    static const int K = 19, N = 1 << K, M = 998244353; // change
-    typedef mint<M> mi;
+    static const int K = 20, N = 1 << K;
     mi pl[N];
     int rv[N];
     void dft(vector<mi> &ar) {
@@ -30,7 +31,8 @@ struct NTT {
             i *= ivn;
         dft(ar);
     }
-    vector<mi> pmul(vector<mi> a, vector<mi> b) {
+	template<typename T>
+    T pmul(T a, T b) {
         static int n;
         n = size(a) + size(b) - 1;
         while (n & (n - 1))
