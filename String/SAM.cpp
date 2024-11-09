@@ -1,6 +1,6 @@
 struct SAM {
-    static const int N = 1e6 + 6;
-    int tr[26][N], len[N], lnk[N], ctn, lst;
+    static const int N = 2e5 + 6;
+    int tr[26][N], len[N], lnk[N], tmp[N], pl[N], ctn, lst;
     inline void ini(int x) {
         for (int i = 0; i < 26; i++)
             tr[i][x] = 0;
@@ -37,5 +37,11 @@ struct SAM {
         ini();
         for (const char &c : s)
             ext(c);
+        for (int i = 0; i <= ctn; i++)
+            tmp[len[i]]++;
+        for (int i = 1; i <= ctn; i++)
+            tmp[i] += tmp[i - 1];
+        for (int i = ctn; i >= 0; i--)
+            pl[--tmp[len[i]]] = i;
     }
 };
