@@ -7,6 +7,7 @@ struct SAM {
     }
     inline void ini() {
         ini(ctn = lst = len[0] = 0), lnk[0] = -1;
+		memset(tmp,0,sizeof(tmp));
     }
     inline void cp(int x, int y) {
         lnk[x] = lnk[y];
