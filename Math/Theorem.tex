@@ -166,4 +166,9 @@ $$
 \binom{n}{i}\equiv \prod_{j=0}^{m}\binom{n_j}{i_j}\pmod{p}
 $$
 where $a_j$ is a's representation in p-base
+
+
+\item Cipolla's algorithm
+	find $a\Rightarrow (\frac{a^2-n}{p})=-1$(legendre symbol) and calculate $(a+\sqrt{a^2-n})^{(p+1)/2}$ in the field $\mathbb(F)_p(\sqrt{a^2-n})$, that will be a solution.(note: p=2 need to be seperate out)
 \end{itemize}
+

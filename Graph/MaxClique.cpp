@@ -1,4 +1,4 @@
-struct MaxClique { // fast when N <= 100
+struct MaxClique { // fast when N <= 100, 0-base,output sol[N] to get node;
   static const int N = 105;
   bitset<N> G[N], cs[N];
   int ans, sol[N], q, cur[N], d[N], n;
