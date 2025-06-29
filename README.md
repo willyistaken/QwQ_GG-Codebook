@@ -31,6 +31,7 @@
     - [ ] SAM (learn)
 4. 資結
     - [x] link-cut tree/ ETT
+    - [ ] splay tree
     - [ ] 動態開點李超
     - [ ] 修改莫隊
     - [x] 吉如一
