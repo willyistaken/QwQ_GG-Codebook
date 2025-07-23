@@ -1,7 +1,7 @@
 struct FLOW {
     static const int N = 1e3 + 5, M = N * 10; // change
     int dp[N], cr[N], hd[N], ct = 2, s = 0, t = 1, n, flow;
-    inline void ini(int _n) { n = _n; }
+	FLOW(int _n):n(_n){}
     struct E {
         int to, cap, nxt;
     } eg[M];
