@@ -68,10 +68,10 @@ struct DMFLOW {
             return -1;
         fw.s = s, fw.t = t;
         res = fw.getflow();
-        /* // maximum
-        fw.s = t, fw.t = s;
-        res = INF - fw.getflow();
-        // minimum */
+        // maximum
+        // fw.s = t, fw.t = s;
+        // res = INF - fw.getflow();
+        // minimum
         return sum = res;
     }
 } dmfw;
