@@ -9,9 +9,7 @@ struct ACauto {
     }
     inline int add(const string &s) {
         int cr = 1;
-        string tmp;
         for (int c : s) {
-            tmp += c;
             c -= 'a';
             if (!tr[c][cr])
                 clr(tr[c][cr] = ++ctn);
