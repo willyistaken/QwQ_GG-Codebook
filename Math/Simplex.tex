@@ -1,0 +1,28 @@
+% \normalsize
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Primal} & \textbf{Dual} \\
+\hline
+Maximize $c^\intercal x$ s.t. $Ax \leq b$, $x \geq 0$ & Minimize $b^\intercal y$ s.t. $A^\intercal y \geq c$, $y \geq 0$ \\
+\hline
+Maximize $c^\intercal x$ s.t. $Ax \leq b$ & Minimize $b^\intercal y$ s.t. $A^\intercal y = c$, $y \geq 0$ \\
+\hline
+Maximize $c^\intercal x$ s.t. $Ax = b$, $x \geq 0$ & Minimize $b^\intercal y$ s.t. $A^\intercal y \geq c$ \\
+\hline
+\end{tabular}
+
+$\bar{\mathbf{x}}$ and $\bar{\mathbf{y}}$ are optimal if and only if for all $i \in [1, n]$, either $\bar{x}_i = 0$ or $\sum_{j=1}^{m}A_{ji}\bar{y}_j = c_i$ holds and for all $i \in [1, m]$ either $\bar{y}_i = 0$ or $\sum_{j=1}^{n}A_{ij}\bar{x}_j = b_j$ holds.
+
+\begin{enumerate}
+    %\itemsep-0.5em
+    \item In case of minimization, let $c^\prime_i = -c_i$
+    \item $\sum_{1 \leq i \leq n}{A_{ji}x_i} \geq b_j \rightarrow \sum_{1 \leq i \leq n}{-A_{ji}x_i} \leq -b_j$
+    \item $\sum_{1 \leq i \leq n}{A_{ji}x_i} = b_j$ 
+        %\vspace{-0.5em}
+        \begin{itemize}
+            %\itemsep-0.5em
+            \item $\sum_{1 \leq i \leq n}{A_{ji}x_i} \leq b_j$
+            \item $\sum_{1 \leq i \leq n}{A_{ji}x_i} \geq b_j$
+        \end{itemize}
+    \item If $x_i$ has no lower bound, replace $x_i$ with $x_i - x_i^\prime$
+\end{enumerate}

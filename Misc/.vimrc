@@ -6,11 +6,7 @@ ino " ""<Esc>i
 ino [ []<Esc>i
 ino { {}<Esc>i
 ino {<CR> {<CR><Tab><CR>}<Esc>hxka
-vno ( c()<Esc>P
-vno [ c[]<Esc>P
-vno { c{}<Esc>P
 ino jj <Esc>
 ino jk <Esc>
+ino kk <Esc>
 map <F5> :w<CR>:!g++ -g -fsanitize=undefined,address  -Wall -Wextra -Wshadow %:r.cpp &&echo "Compiled" && ./a.out<CR>
-map <F6> :w<CR>:!g++ -g -fsanitize=undefined,address  -Wall -Wextra -Wshadow %:r.cpp -o %:r <CR>
-map <F7> :!./a.out<CR>
