@@ -28,6 +28,7 @@ struct SA {
             memcpy(tmp, rk, n << 2), rk[sa[0]] = m = 1;
             for (int i = 1; i < n; i++) {
                 if (tmp[sa[i]] != tmp[sa[i - 1]] ||
+                    sa[i - 1] + k >= n ||
                     tmp[sa[i] + k] != tmp[sa[i - 1] + k])
                     m++;
                 rk[sa[i]] = m;

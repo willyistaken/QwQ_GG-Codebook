@@ -1,5 +1,5 @@
 struct SAM {
-    static const int N = 2e5 + 6;
+    static const int N = 2e5 + 6; // node < 2n ; edge < 3n
     int tr[26][N], len[N], lnk[N], tmp[N], pl[N], ctn, lst;
     inline void ini(int x) {
         for (int i = 0; i < 26; i++)
@@ -7,7 +7,7 @@ struct SAM {
     }
     inline void ini() {
         ini(ctn = lst = len[0] = 0), lnk[0] = -1;
-		memset(tmp,0,sizeof(tmp));
+        memset(tmp, 0, sizeof(tmp));
     }
     inline void cp(int x, int y) {
         lnk[x] = lnk[y];
