@@ -1,4 +1,6 @@
 ll PollardRho(ll x) {// get a factor of x(not prime) in O(x^0.25) 
+	if(x%2==0) return 2;
+	if(x%3==0) return 3;
     ll s = 0, t = 0;
     ll c = (ll)rand() % (x - 1) + 1;
     int step = 0, g = 1;
